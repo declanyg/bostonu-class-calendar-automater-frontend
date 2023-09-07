@@ -12,10 +12,11 @@ const Home = () => {
         
         axios({
             method: 'post',
-            url: 'calendar-automater-api-production.up.railway.app/api/getCalendars',
+            url: 'https://calendar-automater-api-production.up.railway.app/api/getCalendars',
             data: response
         })
             .then((calendarsResponse) => {
+                console.log(calendarsResponse)
                 navigate('./form', {state: {list: calendarsResponse.data}})
             }, (error) => {
                 console.log(error);
