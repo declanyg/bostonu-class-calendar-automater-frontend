@@ -122,7 +122,7 @@ const CalendarForm = () => {
                     {inserted ? (<Typography color="green" variant='h4' className="mt-1 text-4xl justify-center mb-8">
                         Success
                     </Typography>) : (<div></div>)}
-                    {inserted ? (<Typography color="red" variant='h4' className="mt-1 text-4xl justify-center mb-8">
+                    {failed ? (<Typography color="red" variant='h4' className="mt-1 text-4xl justify-center mb-8">
                         Failed
                     </Typography>) : (<div></div>)}
                 </Card>
