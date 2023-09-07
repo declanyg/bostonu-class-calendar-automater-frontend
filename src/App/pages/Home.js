@@ -27,7 +27,8 @@ const Home = () => {
 
     const login = useGoogleLogin({
         onSuccess: (codeResponse) => openForm(codeResponse),
-        onError: (error) => console.log('Login Failed:', error)
+        onError: (error) => console.log('Login Failed:', error),
+        scope: 'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.calendars https://www.googleapis.com/auth/calendar.events'
     });
  
     return (

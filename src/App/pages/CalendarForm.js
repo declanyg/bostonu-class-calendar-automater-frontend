@@ -50,7 +50,7 @@ const CalendarForm = () => {
             endDate: endDate.toISOString().split("T")[0].replaceAll("-", "") +"T170000Z",
             chosenCalendar: chosenCalendar,
         }
-        console.log(submitData)
+        // console.log(submitData)
 
         axios({
             method: 'post',
