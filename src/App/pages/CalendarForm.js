@@ -43,20 +43,20 @@ const CalendarForm = () => {
     
         // Read the form data
         const form = e.target;
-        const submitData = {
-            username: form.username.value,
-            password: form.password.value,
-            startDate: (startDate.subtract(1, 'day')).toISOString(),
-            endDate: endDate.toISOString().split("T")[0].replaceAll("-", "") +"T170000Z",
-            chosenCalendar: chosenCalendar,
-        }
-        // console.log(submitData)
+        
+        console.log("submitted")
 
         axios({
             method: 'post',
             url: '/api/getList',
             crossOrigin: true,
-            data: submitData
+            data: {
+                username: form.username.value,
+                password: form.password.value,
+                startDate: (startDate.subtract(1, 'day')).toISOString(),
+                endDate: endDate.toISOString().split("T")[0].replaceAll("-", "") +"T170000Z",
+                chosenCalendar: chosenCalendar,
+            }
         })
             .then((response) => {
                 console.log(response)
