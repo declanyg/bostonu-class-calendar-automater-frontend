@@ -54,7 +54,7 @@ const CalendarForm = () => {
 
         axios({
             method: 'post',
-            url: 'https://calendar-automater-api-production.up.railway.app/api/getList',
+            url: '/api/getList',
             crossOrigin: true,
             data: submitData
         })
@@ -63,7 +63,7 @@ const CalendarForm = () => {
                 //Inserting into calendar
                 axios({
                     method: 'post',
-                    url: 'https://calendar-automater-api-production.up.railway.app/api/insertEvents',
+                    url: '/api/insertEvents',
                     crossOrigin: true,
                     data: {events: response.data, chosenCalendarId: state.list[chosenCalendar]}
                 })
