@@ -28,6 +28,7 @@ const CalendarForm = () => {
     const [chosenCalendar, setChosenCalendar] = useState('');
     const [inserted, setInserted] = useState(false);
     const [disableSubmitButton, setDisableSubmitButton] = useState(false);
+    const [failed, setFailed] = useState(false);
 
     const { state } = useLocation();
     //console.log(state.list);
@@ -42,6 +43,7 @@ const CalendarForm = () => {
         // Prevent the browser from reloading the page
         e.preventDefault();
         setDisableSubmitButton(true);
+        setFailed(false);
     
         // Read the form data
         const form = e.target;
@@ -77,11 +79,13 @@ const CalendarForm = () => {
                     }, (error) => {
                         console.log(error);
                         setDisableSubmitButton(false);
+                        setFailed(true);
                     });
 
             }, (error) => {
                 console.log(error);
                 setDisableSubmitButton(false);
+                setFailed(true)
             });
     
       }
@@ -117,6 +121,9 @@ const CalendarForm = () => {
                     </form>
                     {inserted ? (<Typography color="green" variant='h4' className="mt-1 text-4xl justify-center mb-8">
                         Success
+                    </Typography>) : (<div></div>)}
+                    {inserted ? (<Typography color="red" variant='h4' className="mt-1 text-4xl justify-center mb-8">
+                        Failed
                     </Typography>) : (<div></div>)}
                 </Card>
             </LocalizationProvider>
