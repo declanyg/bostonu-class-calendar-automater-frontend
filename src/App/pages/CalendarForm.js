@@ -91,7 +91,7 @@ const CalendarForm = () => {
                     <Typography color="gray" className="mt-1 font-normal">
                         Enter your information
                     </Typography>
-                    <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96" onSubmit={handleSubmit}>
+                    <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96 items-center" onSubmit={handleSubmit}>
                         <div className="mb-4 flex flex-col gap-6">
                             <Input size="lg" name='username' label="Username" />
                             <Input size="lg" name='password' type='password' label="Password" />
@@ -109,10 +109,10 @@ const CalendarForm = () => {
                         <Button className="mt-6" fullWidth type='submit' label="endDate">
                             Create Events
                         </Button>
-                        {inserted ? (<Typography color="green" variant='h4' className="mt-1 text-4xl">
+                    </form>
+                    {inserted ? (<Typography color="green" variant='h4' className="mt-1 text-4xl justify-center mb-8">
                         Success
                     </Typography>) : (<div></div>)}
-                    </form>
                 </Card>
             </LocalizationProvider>
         </div>
