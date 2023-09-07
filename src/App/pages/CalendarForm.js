@@ -27,6 +27,7 @@ const CalendarForm = () => {
     const [calendarNames, setCalendarNames] = useState([]);
     const [chosenCalendar, setChosenCalendar] = useState('');
     const [inserted, setInserted] = useState(false);
+    const [disableSubmitButton, setDisableSubmitButton] = useState(false);
 
     const { state } = useLocation();
     //console.log(state.list);
@@ -40,10 +41,11 @@ const CalendarForm = () => {
     function handleSubmit(e) {
         // Prevent the browser from reloading the page
         e.preventDefault();
+        setDisableSubmitButton(true);
     
         // Read the form data
         const form = e.target;
-        
+
         console.log("submitted")
 
         axios({
@@ -70,13 +72,16 @@ const CalendarForm = () => {
                     .then((r) => {
                         console.log(r)
                         setInserted(true);
+                        setDisableSubmitButton(false);
                         
                     }, (error) => {
                         console.log(error);
+                        setDisableSubmitButton(false);
                     });
 
             }, (error) => {
                 console.log(error);
+                setDisableSubmitButton(false);
             });
     
       }
@@ -106,7 +111,7 @@ const CalendarForm = () => {
                                 ))}
                             </Select>
                         </div>
-                        <Button className="mt-6" fullWidth type='submit' label="endDate">
+                        <Button className="mt-6" fullWidth type='submit' label="createEvents" disabled={disableSubmitButton}>
                             Create Events
                         </Button>
                     </form>
