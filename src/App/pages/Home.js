@@ -13,6 +13,7 @@ const Home = () => {
         axios({
             method: 'post',
             url: 'https://calendar-automater-api-production.up.railway.app/api/getCalendars',
+            crossOrigin: true,
             data: response
         })
             .then((calendarsResponse) => {
