@@ -35,7 +35,7 @@ const CalendarForm = () => {
         var temp = Object.keys(state.list).sort()
         //console.log(temp)
         setCalendarNames(temp);
-    }, [])
+    }, [state.list])
 
     function handleSubmit(e) {
         // Prevent the browser from reloading the page
