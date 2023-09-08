@@ -4,7 +4,8 @@ import {
     Button,
     Typography,
     Select,
-    Option
+    Option,
+    Spinner
   } from "@material-tailwind/react";
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
@@ -30,6 +31,7 @@ const CalendarForm = () => {
     const [disableSubmitButton, setDisableSubmitButton] = useState(false);
     const [failed, setFailed] = useState(false);
     const [emptyForm, setEmptyForm] = useState(false);
+    const [requestRunning, setRequesetRunning] = useState(false);
 
     const { state } = useLocation();
     //console.log(state.list);
@@ -59,6 +61,8 @@ const CalendarForm = () => {
 
         console.log("submitted")
 
+        setRequesetRunning(true);
+
         axios({
             method: 'post',
             url: '/api/getList',
@@ -83,18 +87,21 @@ const CalendarForm = () => {
                     .then((r) => {
                         console.log(r)
                         setInserted(true);
-                        setDisableSubmitButton(false);
+                        setDisableSubmitButton(true);
+                        setRequesetRunning(false);
                         
                     }, (error) => {
                         console.log(error);
                         setDisableSubmitButton(false);
                         setFailed(true);
+                        setRequesetRunning(false);
                     });
 
             }, (error) => {
                 console.log(error);
                 setDisableSubmitButton(false);
                 setFailed(true)
+                setRequesetRunning(false);
             });
     
       }
@@ -124,11 +131,14 @@ const CalendarForm = () => {
                                 ))}
                             </Select>
                         </div>
-                        <Button className="mt-6" fullWidth type='submit' label="createEvents" disabled={disableSubmitButton}>
-                            Create Events
+                        <Button className="mt-6 h-10" fullWidth type='submit' label="createEvents" disabled={disableSubmitButton}>
+                            <div className="flex flex-row items-center justify-center">
+                                <div className="absolute">Create Events</div>
+                                { requestRunning ? <Spinner className="float-right ml-auto h-10"/> : <div/>}
+                            </div>
                         </Button>
                     </form>
-                    <Typography className="mt-1 text-sm font-black">
+                    <Typography className="mt-1 text-sm font-black mb-4">
                         Your information is not saved or logged
                     </Typography>
                     {emptyForm ? (<Typography color="red" variant='h2' className="mt-1 mb-4 text-2xl justify-center mb-8">
