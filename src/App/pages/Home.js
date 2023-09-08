@@ -8,7 +8,7 @@ const Home = () => {
 
     const navigate = useNavigate();
     const openForm = (response) => {
-        console.log(response);
+        // console.log(response);
         
         axios({
             method: 'post',
