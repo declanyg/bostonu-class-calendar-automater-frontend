@@ -138,8 +138,8 @@ const CalendarForm = () => {
                             </div>
                         </Button>
                     </form>
-                    <Typography className="mt-1 text-sm font-black mb-4">
-                        Your information is not saved or logged
+                    <Typography className="mt-1 text-sm font-black mb-4 text-center">
+                        Your information is not saved or logged<br/>Make sure to accept duo mobile
                     </Typography>
                     {emptyForm ? (<Typography color="red" variant='h2' className="mt-1 mb-4 text-2xl justify-center mb-8">
                         Fill out the form
