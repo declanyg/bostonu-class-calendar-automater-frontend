@@ -52,7 +52,7 @@ const CalendarForm = () => {
         // Read the form data
         const form = e.target;
 
-        if (!form.username.value || !form.password.value || !startDate || !endDate) {
+        if (!form.username.value || !form.password.value || !startDate || !endDate || !chosenCalendar) {
             console.log('fill out the form')
             setEmptyForm(true);
             setDisableSubmitButton(false);
@@ -116,7 +116,10 @@ const CalendarForm = () => {
                     <Typography color="gray" className="mt-1 font-normal">
                         Enter your information and credentials
                     </Typography>
-                    <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96 items-center" onSubmit={handleSubmit}>
+                    <Typography className="mt-1 text-xs font-black text-center">
+                       Your credentials are not saved or logged
+                    </Typography>
+                    <form className="mt-4 mb-2 w-80 max-w-screen-lg sm:w-96 items-center" onSubmit={handleSubmit}>
                         <div className="mb-4 flex flex-col gap-6">
                             <Input size="lg" name='username' label="BU Username" />
                             <Input size="lg" name='password' type='password' label="BU Password" />
@@ -139,7 +142,7 @@ const CalendarForm = () => {
                         </Button>
                     </form>
                     <Typography className="mt-1 text-sm font-black mb-4 text-center">
-                        Your information is not saved or logged<br/>Make sure to accept duo nmobile
+                       Make sure to accept duo mobile<span className="text-xs"><br/>If it fails, you might have to relogin and try again<br/>Or the scraper needs to be updated</span>
                     </Typography>
                     {emptyForm ? (<Typography color="red" variant='h2' className="mt-1 mb-4 text-2xl justify-center mb-8">
                         Fill out the form
