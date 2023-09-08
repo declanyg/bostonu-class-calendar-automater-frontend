@@ -134,7 +134,7 @@ const CalendarForm = () => {
                                 ))}
                             </Select>
                         </div>
-                        <Button className="mt-6 h-10" fullWidth type='submit' label="createEvents" disabled={disableSubmitButton}>
+                        <Button className="mt-6 h-12" fullWidth type='submit' label="createEvents" disabled={disableSubmitButton}>
                             <div className="flex flex-row items-center justify-center">
                                 <div className="absolute">Create Events</div>
                                 { requestRunning ? <Spinner className="float-right ml-auto"/> : <div/>}
