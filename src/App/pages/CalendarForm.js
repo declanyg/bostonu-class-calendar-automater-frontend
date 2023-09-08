@@ -134,12 +134,12 @@ const CalendarForm = () => {
                         <Button className="mt-6 h-10" fullWidth type='submit' label="createEvents" disabled={disableSubmitButton}>
                             <div className="flex flex-row items-center justify-center">
                                 <div className="absolute">Create Events</div>
-                                { requestRunning ? <Spinner className="float-right ml-auto h-10"/> : <div/>}
+                                { requestRunning ? <Spinner className="float-right ml-auto"/> : <div/>}
                             </div>
                         </Button>
                     </form>
                     <Typography className="mt-1 text-sm font-black mb-4 text-center">
-                        Your information is not saved or logged<br/>Make sure to accept duo mobile
+                        Your information is not saved or logged<br/>Make sure to accept duo nmobile
                     </Typography>
                     {emptyForm ? (<Typography color="red" variant='h2' className="mt-1 mb-4 text-2xl justify-center mb-8">
                         Fill out the form
