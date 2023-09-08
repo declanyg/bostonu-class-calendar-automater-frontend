@@ -29,6 +29,7 @@ const CalendarForm = () => {
     const [inserted, setInserted] = useState(false);
     const [disableSubmitButton, setDisableSubmitButton] = useState(false);
     const [failed, setFailed] = useState(false);
+    const [emptyForm, setEmptyForm] = useState(false);
 
     const { state } = useLocation();
     //console.log(state.list);
@@ -44,9 +45,17 @@ const CalendarForm = () => {
         e.preventDefault();
         setDisableSubmitButton(true);
         setFailed(false);
+        setEmptyForm(false);
     
         // Read the form data
         const form = e.target;
+
+        if (!form.username.value || !form.password.value || !startDate || !endDate) {
+            console.log('fill out the form')
+            setEmptyForm(true);
+            setDisableSubmitButton(false);
+            return
+        }
 
         console.log("submitted")
 
@@ -93,17 +102,17 @@ const CalendarForm = () => {
     return (
         <div>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <Card color="transparent" shadow={true} className="w-[29%] mx-[35%] justify-center items-center mt-8">
+                <Card color="transparent" shadow={true} className="w-84 sm:w-100 lg:mx-[35vw] justify-center items-center mt-8">
                     <Typography variant="h4" color="blue-gray">
                         Calendar Info
                     </Typography>
                     <Typography color="gray" className="mt-1 font-normal">
-                        Enter your information
+                        Enter your information and credentials
                     </Typography>
                     <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96 items-center" onSubmit={handleSubmit}>
                         <div className="mb-4 flex flex-col gap-6">
-                            <Input size="lg" name='username' label="Username" />
-                            <Input size="lg" name='password' type='password' label="Password" />
+                            <Input size="lg" name='username' label="BU Username" />
+                            <Input size="lg" name='password' type='password' label="BU Password" />
                             <DatePicker name="startDate" label="Start Date" onChange={(newValue) => setStartDate(newValue)}/>
                             <DatePicker name="endDate" label="End Date" onChange={(newValue) => setEndDate(newValue)}/>
                             <Select
@@ -119,10 +128,16 @@ const CalendarForm = () => {
                             Create Events
                         </Button>
                     </form>
-                    {inserted ? (<Typography color="green" variant='h4' className="mt-1 text-4xl justify-center mb-8">
+                    <Typography className="mt-1 text-sm font-black">
+                        Your information is not saved or logged
+                    </Typography>
+                    {emptyForm ? (<Typography color="red" variant='h2' className="mt-1 mb-4 text-2xl justify-center mb-8">
+                        Fill out the form
+                    </Typography>) : (<div></div>)}
+                    {inserted ? (<Typography color="green" variant='h4' className="mt-4 text-4xl justify-center mb-8">
                         Success
                     </Typography>) : (<div></div>)}
-                    {failed ? (<Typography color="red" variant='h4' className="mt-1 text-4xl justify-center mb-8">
+                    {failed ? (<Typography color="red" variant='h4' className="mt-4 text-4xl justify-center mb-8">
                         Failed
                     </Typography>) : (<div></div>)}
                 </Card>

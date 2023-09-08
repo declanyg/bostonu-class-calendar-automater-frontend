@@ -44,6 +44,8 @@ const Home = () => {
             <img src={GoogleImage} alt="metamask" className="h-6 w-6" />
                 Sign into Google
             </Button>
+            <h2 className='text-black text-xl'>Open the website in a web browser</h2>
+            <p className='text-black text-m w-[50vw] text-center'>The app scrapes the BU class schedule website and inserts it into a google calendar of your choice</p>
         </div>
         );
 }
